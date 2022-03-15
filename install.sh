@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # This script is provided as an example for building the prerequisites for pelz. It is not intended
-# to be maintained, but in some cases it may help simplify installation of dependencies.
+# to be maintained. In some cases it may help simplify installation of dependencies.
 #
 # This script has been tested on Ubuntu and successfully built pelz and its dependencies. It does
 # not build the required Intel SGX and TPM 2.0 SDKs or simulators. The build process for the 
@@ -63,7 +63,7 @@ sudo make install
 make clean
 popd
 
-#Make pelz
+# A key is required to build the pelz enclave. This .pem will be used to sign the enclave.
 openssl genrsa -out sgx/pelz_enclave_private.pem -3 3072
 make
 popd
