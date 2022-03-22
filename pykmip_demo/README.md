@@ -54,11 +54,10 @@ be done prior to executing the demo.
 
 ### Pelz Installation Steps
 1.  Open terminal
-2.	Clone pelz repo and run install script
+2.	Clone pelz repo and follow install instructions
 
 		git clone https://github.com/NationalSecurityAgency/pelz.git
 		cd pelz
-		./install.sh
 
 ### Accumulo and Accumulo Plugin Installation Steps 
 3. Download the Accumulo source and setup pelz plugin
