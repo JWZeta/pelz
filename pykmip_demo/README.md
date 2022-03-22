@@ -49,7 +49,8 @@ connection to the PyKMIP server.
 
 ## Steps for End to End demo of PyKMIP, Accumulo, and pelz. 
 The remainder of this README describes the process for installing the necessary tools to execute
-the demonstration.
+the demonstration. These instructions omit the installation and setup of an SGX emulator. This must
+be done prior to executing the demo.
 
 ### Pelz Installation Steps
 1.  Open terminal
