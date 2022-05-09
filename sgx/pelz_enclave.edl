@@ -203,13 +203,14 @@ public TableResponseStatus chan_table_destroy();
  * @param[in] request_type the type of the request (encrypt or decrypt)
  * @param[in] key_id       the key_id of the key to be used for the request
  * @param[in] data         the input data
+ * @param[in] socket_id    the index for the channel key to decrypt data and encrypt output
  * @param[out] output      a pointer to a charbuf to hold the output, will
  *                         be created inside the call
  *
  * @return REQUEST_OK on success, an error message indicating the type of
  *                    error otherwise.
  */
-public RequestResponseStatus pelz_request_handler(RequestType request_type, charbuf key_id, charbuf data, [out] charbuf* output);
+public RequestResponseStatus pelz_request_handler(RequestType request_type, charbuf key_id, charbuf data, int socket_id, [out] charbuf* output);
 	};
 	untrusted {
 /**

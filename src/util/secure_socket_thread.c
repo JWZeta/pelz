@@ -112,7 +112,7 @@ void secure_socket_process(void *arg)
     charbuf request_sig;
     charbuf requestor_cert;
 
-    charbuf data;           //Remove this variable
+    charbuf data;
     charbuf output;
 
     //Parse request for processing
@@ -128,21 +128,23 @@ void secure_socket_process(void *arg)
 
     free_charbuf(&request);
 
-    //Remove this function because this will be decrypted in the enclave
     decodeBase64Data(data_in.chars, data_in.len, &data.chars, &data.len);
     free_charbuf(&data_in);
 
     pthread_mutex_lock(&lock);
-    //Change data to data_in
-    pelz_request_handler(eid, &status, request_type, key_id, data, &output);
+    pelz_request_handler(eid, &status, request_type, key_id, data, new_socket, &output);
     if (status == KEK_NOT_LOADED)
     {
-      if (key_load(key_id) == 0)
+      //charbuf decrypted_key_id;
+      //get_decrypted_key_id(key_id, &decrypted_key_id);
+      if (key_load(key_id) == 0)  //decrypted_key_id
       {
-        pelz_request_handler(eid, &status, request_type, key_id, data, &output);
+        //secure_free_charbuf(&decrypted_key_id);
+        pelz_request_handler(eid, &status, request_type, key_id, data, new_socket, &output);
       }
       else
       {
+        //secure_free_charbuf(&decrypted_key_id);
         status = KEK_LOAD_ERROR;
       }
     }
@@ -179,7 +181,6 @@ void secure_socket_process(void *arg)
     }
     else
     {
-      //Remove the encode function because the output will be encrypted in the enclave
       encodeBase64Data(output.chars, output.len, &data_out.chars, &data_out.len);
       if (strlen((char *) data_out.chars) != data_out.len)
       {

@@ -129,12 +129,12 @@ void unsecure_socket_process(void *arg)
     free_charbuf(&data_in);
 
     pthread_mutex_lock(&lock);
-    pelz_request_handler(eid, &status, request_type, key_id, data, &output);
+    pelz_request_handler(eid, &status, request_type, key_id, data, 0, &output);
     if (status == KEK_NOT_LOADED)
     {
       if (key_load(key_id) == 0)
       {
-        pelz_request_handler(eid, &status, request_type, key_id, data, &output);
+        pelz_request_handler(eid, &status, request_type, key_id, data, 0, &output);
       }
       else
       {
