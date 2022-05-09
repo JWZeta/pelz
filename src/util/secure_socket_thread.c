@@ -136,7 +136,7 @@ void secure_socket_process(void *arg)
     if (status == KEK_NOT_LOADED)
     {
       //charbuf decrypted_key_id;
-      //get_decrypted_key_id(key_id, &decrypted_key_id);
+      //get_decrypted_value(key_id, &decrypted_key_id);
       if (key_load(key_id) == 0)  //decrypted_key_id
       {
         //secure_free_charbuf(&decrypted_key_id);
