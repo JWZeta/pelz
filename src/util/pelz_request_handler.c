@@ -14,7 +14,7 @@ RequestResponseStatus pelz_request_handler(RequestType request_type, charbuf key
   int index;
 
   //get_decrypted_key_id(key_id, &decrypted_key_id);
-  if (socket_id > 0)
+  if (socket_id >= 0)
   {
     //get_decrypted_value(key_id_in, &key_id, socket_id);
     key_id = copy_chars_from_charbuf(key_id_in, 0); //Remove
@@ -31,7 +31,7 @@ RequestResponseStatus pelz_request_handler(RequestType request_type, charbuf key
   }
   free_charbuf(&key_id);
 
-  if(socket_id > 0)
+  if(socket_id >= 0)
   {
     //get_decrypted_value(data_in, &data, socket_id);
     data = copy_chars_from_charbuf(data_in, 0); //Remove
@@ -78,7 +78,7 @@ RequestResponseStatus pelz_request_handler(RequestType request_type, charbuf key
   }
   secure_free_charbuf(&data);
 
-  if (socket_id > 0)
+  if (socket_id >= 0)
   {
     //get_encrypted_value(outData, &output, socket_id);
     output->len = outData.len; //Remove

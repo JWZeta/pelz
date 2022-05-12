@@ -111,6 +111,7 @@ void unsecure_socket_process(void *arg)
 
     charbuf data;
     charbuf output;
+    int chan_key = -1;
 
     //Parse request for processing
     if (request_decoder(request, &request_type, &key_id, &data_in, &request_sig, &requestor_cert))
@@ -129,12 +130,12 @@ void unsecure_socket_process(void *arg)
     free_charbuf(&data_in);
 
     pthread_mutex_lock(&lock);
-    pelz_request_handler(eid, &status, request_type, key_id, data, 0, &output);
+    pelz_request_handler(eid, &status, request_type, key_id, data, chan_key, &output);
     if (status == KEK_NOT_LOADED)
     {
       if (key_load(key_id) == 0)
       {
-        pelz_request_handler(eid, &status, request_type, key_id, data, 0, &output);
+        pelz_request_handler(eid, &status, request_type, key_id, data, chan_key, &output);
       }
       else
       {
