@@ -214,7 +214,7 @@ public TableResponseStatus chan_table_destroy();
  * @return REQUEST_OK on success, an error message indicating the type of
  *                    error otherwise.
  */
-public RequestResponseStatus pelz_encrypt_request_handler(RequestType request_type, charbuf key_id, charbuf cipher_name, charbuf plain_data, [out] charbuf* cipher_data, [out] charbuf* iv, [out] charbuf* tag, charbuf signature, charbuf cert);
+public RequestResponseStatus pelz_encrypt_request_handler(RequestType request_type, charbuf key_id, charbuf cipher_name, [in, count=plain_data_len] unsigned char *plain_data_char, size_t plain_data_len, [out] charbuf* cipher_data, [out] charbuf* iv, [out] charbuf* tag, charbuf signature, charbuf cert);
 
 /**
  * <pre>

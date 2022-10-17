@@ -140,12 +140,12 @@ void *unsecure_socket_process(void *arg)
     switch(request_type)
     {
     case REQ_ENC:
-      pelz_encrypt_request_handler(eid, &status, request_type, key_id, cipher_name, input_data, &output, &iv, &tag, request_sig, requestor_cert);
+      pelz_encrypt_request_handler(eid, &status, request_type, key_id, cipher_name, input_data.chars, input_data.len, &output, &iv, &tag, request_sig, requestor_cert);
       if (status == KEK_NOT_LOADED)
       {
 	if (key_load(key_id) == 0)
         {
-          pelz_encrypt_request_handler(eid, &status, request_type, key_id, cipher_name, input_data, &output, &iv, &tag, request_sig, requestor_cert);
+          pelz_encrypt_request_handler(eid, &status, request_type, key_id, cipher_name, input_data.chars, input_data.len, &output, &iv, &tag, request_sig, requestor_cert);
         }
         else
         {
